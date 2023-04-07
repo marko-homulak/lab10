@@ -92,9 +92,11 @@ namespace lab4
         private void calculations_Click(object sender, EventArgs e)
         {
             int sumOfRowsThatHaveNegativeNumbers = CountSumOfRowsThatHaveNegativeNumbers();
-            int k = FindSameRowsAndColls();
+            int k = CountSameRowsAndColls();
+            int sumOfElementsOfSecondaryDiagonal = CountSumOfElementsOfSecondaryDiagonal();
             MessageBox.Show("1 sub task: " + sumOfRowsThatHaveNegativeNumbers + "\n" +
-                "2 sub task: " + k);
+                "2 sub task: " + k + "\n" +
+                "3 sub task: " + sumOfElementsOfSecondaryDiagonal);
         }
 
         private int CountSumOfRowsThatHaveNegativeNumbers()
@@ -124,7 +126,7 @@ namespace lab4
             return count;
         }
 
-        private int FindSameRowsAndColls()
+        private int CountSameRowsAndColls()
         {
             for (int rowI = 0; rowI <= matrixValues.GetUpperBound(0); rowI++)
             {
@@ -153,6 +155,16 @@ namespace lab4
             return 0;
         }
 
+        private int CountSumOfElementsOfSecondaryDiagonal()
+        {
+            int sum = 0;
+            for (int i = 0; i < matrixValues.GetLength(0); i++)
+            {
+                sum += matrixValues[i, matrixValues.GetLength(0) - i - 1];
 
+                matrix.Rows[i].Cells[matrixValues.GetLength(0) - i - 1].Style.BackColor = Color.Yellow;
+            }
+            return sum;
+        }
     }
 }
